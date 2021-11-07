@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PicPiper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    
+    <!-- Smart Photo Album code -->
+    
+    
+</head>
+
+<body class="mainmain">
+    <center>
+        
+        <div class="mainsection">
+
+        <div class="child">
+        <header class="page-header">
+            <h1>PIC-PIPER!</h1>
+        </header>
+        
+        <div class="bar">
+            <input style="display:inline-block;" id="searchbar" class="searchbar" type="text" title="Search">
+            <span><a style="display:inline-block;" href="#" onclick="searchFromVoice()"> <img class="voice" style="display:inline;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png" title="Search by Voice"></a></span>
+        </div>
+
+        <div class="buttons">
+            <input type="file" id="realfile" onchange="previewFile(this);" hidden="hidden"/>
+            <button onclick="search()" class="button" type="button">Search Image</button>
+            <button onclick="uploadImage()" class="button" type="button">Upload Image</button>
+            
+        </div>
+
+        </div>
+        </div>
+
+        <div class="container" id="images">
+        </div>
+
+            <script src="index.js"></script>
+            <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+            <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+            <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+            <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+            <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+            <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+            <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+            <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+            <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+            <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+            <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+            <script type="text/javascript" src="apigClient.js"></script>
+        
+        
+    </center>
+    
+</body>
+
+</html>
