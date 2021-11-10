@@ -20,6 +20,8 @@ region = 'us-east-1'
 lex = boto3.client('lex-runtime', region_name=region)
 
 def lambda_handler(event, context):
+    print(event)
+    print("THIS IS THE DAMN EVENT")
     q1 = event["queryStringParameters"]['q']
     labels = get_labels(q1)
     
@@ -58,7 +60,7 @@ def get_labels(query):
         userId=userid,           
         inputText=query
     )
-    print("lex-response", response)
+    # print("lex-response", response)
     
     labels = []
     if 'slots' not in response:
@@ -73,7 +75,7 @@ def get_labels(query):
 
     
 def get_photo_path(keys):
-    host="search-picpiper-es-nswdvekospzycu2hyhwmad5aki.us-east-1.es.amazonaws.com"
+    host="search-piper-es-2vi7inr55exmidpivownvkwgqu.us-east-1.es.amazonaws.com"
     awsauth = AWSRequestsAuth(aws_access_key='AKIAZ43I5RB2K367DHFN',
                       aws_secret_access_key='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',
                       aws_host=host,
@@ -93,7 +95,7 @@ def get_photo_path(keys):
         if (key is not None) and key != '':
             searchData = es.search({"query": {"match": {"labels": key}}})
             resp.append(searchData)
-    print(resp)
+    # print(resp)
 
     output = []
     for r in resp:
@@ -102,5 +104,5 @@ def get_photo_path(keys):
                 key = val['_source']['objectKey']
                 if key not in output:
                     output.append('s3://picpiper/'+key)
-    print (output)
+    # print (output)
     return output  
