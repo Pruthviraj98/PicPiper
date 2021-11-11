@@ -20,17 +20,18 @@ region = 'us-east-1'
 lex = boto3.client('lex-runtime', region_name=region)
 
 def lambda_handler(event, context):
-    print(event)
-    print("THIS IS THE DAMN EVENT")
-    q1 = event["queryStringParameters"]['q']
+    # q1 = event["queryStringParameters"]["q"]
+    # labels = get_labels(q1)
+    q1 = event["q"]    
+    # return q1
     labels = get_labels(q1)
-    
-    print(labels)
+
+    # print(labels)
     
     if len(labels) != 0:
         img_paths = get_photo_path(labels)
     
-    print(img_paths)
+    
     
     if not img_paths:
         return{
@@ -103,6 +104,6 @@ def get_photo_path(keys):
              for val in r['hits']['hits']:
                 key = val['_source']['objectKey']
                 if key not in output:
-                    output.append('s3://picpiper/'+key)
+                    output.append('s3://pipebucketcloud/'+key)
     # print (output)
     return output  
