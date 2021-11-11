@@ -29,61 +29,14 @@ function search() {
     'Content-Type':"application/json"
     }};
 
-
-
-  // var params = {
-  //   "q": searchTerm
-  // };
-  // var body = {
-  //   "q": searchTerm
-  // };
-
-  // var additionalParams = {
-  //   queryParams: {
-  //     q: searchTerm
-  //   }
-  // };
-  // console.log(searchTerm);
-  // apigClient.searchGet(params, body, additionalParams)
-  //   .then(function (result) {
-  //     console.log(result);
-  //     console.log('success OK');
-  //     showImages(result.data);
-  //   }).catch(function (result) {
-  //     console.log(result);
-  //   });
-
     apigClient.searchGet(params, body , additionalParams).then(function(res){
         console.log("success");
         console.log(res);
         showImages(res.data)
-        // var data = {}
-        // var data_array = []
-        // resp_data  = res.data
-        // length_of_response = resp_data.length;
-        // if(length_of_response == 0)
-        // {
-        //   document.getElementById("displaytext").innerHTML = "No Images Found !!!"
-        //   document.getElementById("displaytext").style.display = "block";
-
-        // }
-
-        // resp_data.forEach( function(obj) {
-        //     var img = new Image();
-        //     img.src = "https://s3.amazonaws.com/assignementb2/"+obj;
-        //     img.setAttribute("class", "banner-img");
-        //     img.setAttribute("alt", "effy");
-        //     document.getElementById("displaytext").innerHTML = "Images returned are : "
-        //     document.getElementById("img-container").appendChild(img);
-        //     document.getElementById("displaytext").style.display = "block";
-
-        //   });
       }).catch(function(result){
           console.log(result);
           console.log("NO RESULT");
       });
-
-
 
 }
 
@@ -104,14 +57,17 @@ function showImages(res) {
     newDiv.appendChild(newContent);
   }
   else {
-    for (var i = 0; i < res.length; i++) {
-      console.log(res[i]);
+    results=res.body.imagePaths
+    for (var i = 0; i < results.length; i++) {
+      console.log(results[i]);
       var newDiv = document.getElementById("images");
       //newDiv.style.display = 'inline'
       var newimg = document.createElement("img");
       var classname = randomChoice(['big', 'vertical', 'horizontal', '']);
       if(classname){newimg.classList.add();}
-      newimg.src = res[i];
+      
+      filename = results[i].substring(results[i].lastIndexOf('/')+1)
+      newimg.src = "https://pipebucketcloud.s3.amazonaws.com/"+filename;
       newDiv.appendChild(newimg);
     }
   }
