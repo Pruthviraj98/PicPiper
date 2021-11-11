@@ -18,12 +18,18 @@ def lambda_handler(event, context):
     body=s3_clientobj['Body'].read().decode('utf-8')
     image = base64.b64decode(body)        
     
+    
+    response=s3_client.delete_object(Bucket=bucket,Key=photo)
+    response=s3_client.put_object(Bucket=bucket, Body=image, Key=photo,ContentType='image/jpg')
+    
+    
     client=boto3.client('rekognition')
     response = client.detect_labels(
     Image={'Bytes':image},
     MaxLabels=10,
     MinConfidence=80
     )
+    
     
     labels=response['Labels']
     custom_labels=[]
@@ -53,4 +59,5 @@ def lambda_handler(event, context):
         verify_certs=True,
         connection_class=RequestsHttpConnection)
         
-    esClient.index(index='photos', doc_type='photo', body=format)
+    temp=esClient.index(index='photos', doc_type='photo', body=format)
+    print(temp)
