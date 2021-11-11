@@ -20,28 +20,71 @@ function searchFromVoice() {
 
 function search() {
   var searchTerm = document.getElementById("searchbar").value;
-  var apigClient = apigClientFactory.newClient({ apiKey: "uz8ZQYdXyi628gfECoCrArwEo3ZIa22d33YaRCmV" });
+  var apigClient = apigClientFactory.newClient({ apiKey: "3TX4JSS1syaieUQvBLq0gqWfJfEHiTH7woeUrkt8" });
 
-  var params = {
-    "q": searchTerm
-  };
-  var body = {
-    "q": searchTerm
-  };
 
-  var additionalParams = {
-    queryParams: {
-      q: searchTerm
-    }
-  };
-  console.log(searchTerm);
-  apigClient.searchGet(params, body, additionalParams)
-    .then(function (result) {
-      console.log('success OK');
-      showImages(result.data);
-    }).catch(function (result) {
-      console.log("Success not OK");
-    });
+    var body = { };
+    var params = {q : searchTerm};
+    var additionalParams = {headers: {
+    'Content-Type':"application/json"
+    }};
+
+
+
+  // var params = {
+  //   "q": searchTerm
+  // };
+  // var body = {
+  //   "q": searchTerm
+  // };
+
+  // var additionalParams = {
+  //   queryParams: {
+  //     q: searchTerm
+  //   }
+  // };
+  // console.log(searchTerm);
+  // apigClient.searchGet(params, body, additionalParams)
+  //   .then(function (result) {
+  //     console.log(result);
+  //     console.log('success OK');
+  //     showImages(result.data);
+  //   }).catch(function (result) {
+  //     console.log(result);
+  //   });
+
+    apigClient.searchGet(params, body , additionalParams).then(function(res){
+        console.log("success");
+        console.log(res);
+        showImages(res.data)
+        // var data = {}
+        // var data_array = []
+        // resp_data  = res.data
+        // length_of_response = resp_data.length;
+        // if(length_of_response == 0)
+        // {
+        //   document.getElementById("displaytext").innerHTML = "No Images Found !!!"
+        //   document.getElementById("displaytext").style.display = "block";
+
+        // }
+
+        // resp_data.forEach( function(obj) {
+        //     var img = new Image();
+        //     img.src = "https://s3.amazonaws.com/assignementb2/"+obj;
+        //     img.setAttribute("class", "banner-img");
+        //     img.setAttribute("alt", "effy");
+        //     document.getElementById("displaytext").innerHTML = "Images returned are : "
+        //     document.getElementById("img-container").appendChild(img);
+        //     document.getElementById("displaytext").style.display = "block";
+
+        //   });
+      }).catch(function(result){
+          console.log(result);
+          console.log("NO RESULT");
+      });
+
+
+
 }
 
 
@@ -92,8 +135,12 @@ function previewFile(input) {
   var reader = new FileReader();
   name = input.files[0].name;
   fileExt = name.split(".").pop();
+  
+  console.log(fileExt)
+  console.log("THIS IS THE EXTENSION!!")
+
   var onlyname = name.replace(/\.[^/.]+$/, "");
-  var finalName = onlyname + "_" + Date.now() + "." + fileExt;
+  var finalName = onlyname+"."+fileExt;
   name = finalName;
 
   reader.onload = function (e) {
@@ -109,22 +156,23 @@ function previewFile(input) {
     else {
       encodedStr = encoded.substring(32, last_index_quote);
     }
-    var apigClient = apigClientFactory.newClient({ apiKey: "uz8ZQYdXyi628gfECoCrArwEo3ZIa22d33YaRCmV" });
+    var apigClient = apigClientFactory.newClient({ apiKey: "3TX4JSS1syaieUQvBLq0gqWfJfEHiTH7woeUrkt8" });
 
     var params = {
         "key": name,
         "bucket": "pipebucketcloud",
-        "Content-Type": "image/jpg;base64",
+        "Content-Type": "image/jpg",
     };
 
     var additionalParams = {
       headers: {
-        "Content-Type": "image/jpg;base64",
+        "Content-Type": "image/jpg",
       }
     };
 
     apigClient.uploadBucketKeyPut(params, encodedStr, additionalParams)
       .then(function (result) {
+        console.log(result);
         console.log('success OK');
         alert("Photo Uploaded Successfully");
       }).catch(function (result) {
