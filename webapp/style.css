@@ -1,0 +1,112 @@
+  .mainmain{
+    background-color: floralwhite;
+  }
+  .mainsection{
+    background: no-repeat left/cover url(https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/retro-photo-album-background-jorgo-photography-wall-art-gallery.jpg);
+    width: 800px;
+    height: 350px;
+    margin: 100px;
+    border-radius: 30px;
+    box-shadow: 1px 10px 8px 1px #dcdcdc;
+  }
+  .child{
+    position: absolute;
+    margin: 35px 115px 0;
+  }
+  .bar{
+    border-radius: 25px;
+    margin:0 auto;
+    width:575px;
+    border:1px solid #dcdcdc;
+    background-color: floralwhite;
+  }
+  .bar:hover{
+    box-shadow: 1px 10px 8px 1px #dcdcdc;
+  }
+  .bar:focus-within{
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline:none;
+  }
+  .searchbar{
+    background-color: floralwhite;
+    height:45px;
+    border:darkblue;
+    width:500px;
+    font-size:16px;
+    outline: none;  
+  }
+
+  header.page-header {
+    background: no-repeat left/cover url(https://www.ppt-backgrounds.net/thumbs/old-western-download-slides-backgrounds.jpg);
+    display: flex;
+    border-radius: 30px;
+    height: 120px;
+    min-width: 100px;
+    align-items: center;
+    color: #fff;
+    text-shadow: #000 0 0 2em;
+    margin: 20px;
+  }
+
+  header.page-header > h1 {
+    font: bold calc(1em + 2 * (70vw - 120px) / 50) 'Dancing Script', cursive,
+        fantasy;
+    margin: 20%;
+  }
+
+  .voice{
+    height:20px;
+    position:relative;
+    top:5px;
+    left:10px;
+  }
+  .buttons{
+    border-radius: 25px;
+    margin-top:30px;
+  }
+  .button{
+    background-color: floralwhite;
+    border:none;
+    color:#707070;
+    font-size:15px;
+    padding: 10px 20px;
+    margin:5px;
+    border-radius:20px;
+    outline:none;
+  }
+  .button:hover{
+    border: 1px solid #c8c8c8;
+    padding: 9px 19px;
+    color:darkcyan;
+  }
+  .button:focus{
+    border:1px solid #4885ed;
+    padding: 9px 19px;
+  }
+  
+  .container {
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    grid-gap: 5px;
+    grid-auto-flow: dense;
+  }
+  
+  
+  .container img {
+     width: 100%;
+     height: 100%;
+  }
+  
+  .horizontal{
+      grid-column: span 2;
+  }
+  .vertical {
+      grid-row: span 2;
+  }
+
+  .big{
+      grid-column: span 2;
+      grid-row: span 2;
+  }
