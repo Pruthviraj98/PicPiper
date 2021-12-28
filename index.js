@@ -20,7 +20,7 @@ function searchFromVoice() {
 
 function search() {
   var searchTerm = document.getElementById("searchbar").value;
-  var apigClient = apigClientFactory.newClient({ apiKey: "3TX4JSS1syaieUQvBLq0gqWfJfEHiTH7woeUrkt8" });
+  var apigClient = apigClientFactory.newClient({ apiKey: " " });
 
 
     var body = { };
@@ -112,7 +112,7 @@ function previewFile(input) {
     else {
       encodedStr = encoded.substring(32, last_index_quote);
     }
-    var apigClient = apigClientFactory.newClient({ apiKey: "3TX4JSS1syaieUQvBLq0gqWfJfEHiTH7woeUrkt8" });
+    var apigClient = apigClientFactory.newClient({ apiKey: " " });
 
     var params = {
         "key": name,
