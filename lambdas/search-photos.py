@@ -77,8 +77,8 @@ def get_labels(query):
     
 def get_photo_path(keys):
     host="search-piper-es-2vi7inr55exmidpivownvkwgqu.us-east-1.es.amazonaws.com"
-    awsauth = AWSRequestsAuth(aws_access_key='AKIAZ43I5RB2K367DHFN',
-                      aws_secret_access_key='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',
+    awsauth = AWSRequestsAuth(aws_access_key='',
+                      aws_secret_access_key='',
                       aws_host=host,
                       aws_region='us-east-1',
                       aws_service='es')
